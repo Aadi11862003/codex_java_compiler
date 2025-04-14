@@ -93,11 +93,6 @@ public class CompilerController {
                 response.put("output", output.toString());
             }
 
-            // Analyze the code for time and space complexity
-            Map<String, String> complexity = analyzeComplexity(code);
-            response.put("timeComplexity", complexity.get("timeComplexity"));
-            response.put("spaceComplexity", complexity.get("spaceComplexity"));
-
         } catch (Exception e) {
             response.put("success", false);
             response.put("message", "Error during compilation or execution");
@@ -107,21 +102,5 @@ public class CompilerController {
         return response;
     }
 
-    private Map<String, String> analyzeComplexity(String code) {
-        Map<String, String> complexity = new HashMap<>();
-        // Basic heuristic for time and space complexity analysis
-        if (code.contains("for") || code.contains("while")) {
-            complexity.put("timeComplexity", "O(n)");
-        } else {
-            complexity.put("timeComplexity", "O(1)");
-        }
-
-        if (code.contains("new")) {
-            complexity.put("spaceComplexity", "O(n)");
-        } else {
-            complexity.put("spaceComplexity", "O(1)");
-        }
-
-        return complexity;
-    }
+   
 }
